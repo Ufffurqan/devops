@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mera-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mera-app
+  template:
+    metadata:
+      labels:
+        app: mera-app
+    spec:
+      containers:
+        - name: mera-app
+          image: embarkx/hello-python:latest
+          # env:
+          #   - name: app-massage
+          #     value: "hello from app.yaml"
+          #   - name: db_password
+          #     value: "12345678" # Database password
+          env:
+            - name: ENV_VALUE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: APP_MESSAGE
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mera-app
+spec:
+  selector:
+    app: mera-app
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 32001
