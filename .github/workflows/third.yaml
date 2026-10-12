@@ -95,7 +95,7 @@ jobs:
           echo "Image pushed."
 
       # ------------------------------------------------------
-      # STEP 10 → NOTIFICATION + FAILURE DEMO .
+      # STEP 10 → NOTIFICATION + FAILURE DEMO
       # ------------------------------------------------------
       - name: Final Status
         run: echo "CI pipeline finished."
