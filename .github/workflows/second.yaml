@@ -3,10 +3,10 @@ name: Second CI
 on:
     push
 
-job:
+jobs:
     build:
         runs-on: ubuntu-latest
 
         steps:
-           - name: say hello
-             run: echo "Hello From The Second workflow!"
+          - name: Say Hello
+            run: echo "Hello from the second workflow!"
