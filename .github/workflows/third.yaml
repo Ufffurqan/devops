@@ -2,7 +2,7 @@ name: Real Dev CI Demo (Echo Only)
 
 on:
   # push:
-  # pull_request:
+  # pull_request
   workflow_dispatch
 
 jobs:
